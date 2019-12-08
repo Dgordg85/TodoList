@@ -41,6 +41,13 @@ public class TodoController {
         return "todo";
     }
 
+    @GetMapping("/todo/create")
+    public String createTodoPage(Model model) {
+        model.addAttribute("todo", new ToDoRepr());
+        return "todo";
+    }
+
+
     @PostMapping("/todo/create")
     public String createToDoPost(@ModelAttribute("todo") ToDoRepr todoRepr){
         toDoService.save(todoRepr);
