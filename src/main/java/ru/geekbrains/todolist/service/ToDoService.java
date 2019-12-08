@@ -11,14 +11,14 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static ru.geekbrains.todolist.security.Util.getCurrentUser;
-
+import static ru.geekbrains.todolist.security.Utils.getCurrentUser;
 
 @Service
 @Transactional
 public class ToDoService {
 
     private ToDoRepository toDoRepository;
+
     private UserRepository userRepository;
 
     @Autowired
@@ -27,13 +27,13 @@ public class ToDoService {
         this.userRepository = userRepository;
     }
 
-    public Optional<ToDoRepr> findById (Long id){
+    public Optional<ToDoRepr> findById(Long id) {
         return toDoRepository.findById(id)
                 .map(ToDoRepr::new);
     }
 
-    public List<ToDoRepr> findToDosByUserId(Long userId){
-        return toDoRepository.findToDosByUserId(userId);
+    public List<ToDoRepr> findToDoByUser_Username(String username) {
+        return toDoRepository.findToDoByUser_Username(username);
     }
 
     public void save(ToDoRepr toDoRepr) {
@@ -51,6 +51,6 @@ public class ToDoService {
 
     public void delete(Long id) {
         toDoRepository.findById(id)
-            .ifPresent(toDo -> toDoRepository.delete(toDo));
+                .ifPresent(toDo -> toDoRepository.delete(toDo));
     }
 }

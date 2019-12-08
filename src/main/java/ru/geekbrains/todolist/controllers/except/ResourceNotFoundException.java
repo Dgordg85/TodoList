@@ -1,4 +1,4 @@
-package ru.geekbrains.todolist.controllers;
+package ru.geekbrains.todolist.controllers.except;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
