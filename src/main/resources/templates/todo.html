@@ -43,7 +43,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <form th:action="@{todo/create}" th:object="${todo}">
+            <form th:action="@{/todo/create}" th:object="${todo}" method="post">
                 <div class="form-group">
                     <label for="description">Description</label>
                     <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Enter description">
