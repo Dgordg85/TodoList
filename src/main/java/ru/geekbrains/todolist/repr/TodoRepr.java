@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class TodoRepr {
+public class ToDoRepr {
     private Long id;
 
     @NotEmpty
@@ -19,10 +19,10 @@ public class TodoRepr {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate targetDate;
 
-    public TodoRepr() {
+    public ToDoRepr() {
     }
 
-    public TodoRepr(ToDo toDo) {
+    public ToDoRepr(ToDo toDo) {
         this.id = toDo.getId();
         this.description = toDo.getDescription();
         this.username = toDo.getUser().getUsername();

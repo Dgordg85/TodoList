@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.geekbrains.todolist.repr.TodoRepr;
+import ru.geekbrains.todolist.repr.ToDoRepr;
 import ru.geekbrains.todolist.service.ToDoService;
 import ru.geekbrains.todolist.service.UserService;
 
@@ -29,20 +29,20 @@ public class TodoController {
 
     @GetMapping("/")
     public String indexPage(Model model){
-        List<TodoRepr> todos = toDoService.findToDosByUserId(userService.getCurrentUserId().orElseThrow(ResourceNotFoundException::new));
+        List<ToDoRepr> todos = toDoService.findToDosByUserId(userService.getCurrentUserId().orElseThrow(ResourceNotFoundException::new));
         model.addAttribute("todos", todos);
         return "index";
     }
 
     @GetMapping("/todo/{id}")
     public String todoPage(@PathVariable("id") Long id, Model model){
-        TodoRepr todoRepr = toDoService.findById(id).orElseThrow(ResourceNotFoundException::new);
+        ToDoRepr todoRepr = toDoService.findById(id).orElseThrow(ResourceNotFoundException::new);
         model.addAttribute("todo", todoRepr);
         return "todo";
     }
 
     @PostMapping("/todo/create")
-    public String createToDoPost(@ModelAttribute("todo") TodoRepr todoRepr){
+    public String createToDoPost(@ModelAttribute("todo") ToDoRepr todoRepr){
         toDoService.save(todoRepr);
         return "redirect:/";
     }
