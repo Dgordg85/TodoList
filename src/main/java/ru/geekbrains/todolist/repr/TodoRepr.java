@@ -1,6 +1,7 @@
 package ru.geekbrains.todolist.repr;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.geekbrains.todolist.persist.entity.ToDo;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,13 @@ public class TodoRepr {
     private LocalDate targetDate;
 
     public TodoRepr() {
+    }
+
+    public TodoRepr(ToDo toDo) {
+        this.id = toDo.getId();
+        this.description = toDo.getDescription();
+        this.username = toDo.getUser().getUsername();
+        this.targetDate = toDo.getTargetDate();
     }
 
     public Long getId() {
